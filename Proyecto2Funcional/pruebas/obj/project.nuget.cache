@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/SfbkndMgouT/nY9Y3dbew2En8bbqGD7ax0L+XlWE9d0T7Ar7cWG5apY3xyzQrbw3xOGkSMRgVVxP8IAgqU1xw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fapor\\OneDrive\\Desktop\\Universidad\\5 semestre\\Lenguajes de programacion\\Semana 7\\Proyecto2-Lenguajes-de-programacion\\Proyecto2Funcional\\pruebas\\pruebas.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fapor\\.nuget\\packages\\fsharp.core\\7.0.200\\fsharp.core.7.0.200.nupkg.sha512"
+  ],
+  "logs": []
+}

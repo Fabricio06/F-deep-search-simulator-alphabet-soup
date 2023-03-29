@@ -7,7 +7,7 @@
 
     <ItemGroup>
         <Compile Include="Program.fs" />
-        <None Include="Idioma.fsx" />
+        <Content Include="palabras.txt" />
     </ItemGroup>
 
 </Project>
