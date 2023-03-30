@@ -1,0 +1,11 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GenerarSopaLetras
+build_property.ProjectDir = C:\Users\fapor\OneDrive\Desktop\Universidad\5 semestre\Lenguajes de programacion\Semana 7\Proyecto2-Lenguajes-de-programacion\Proyecto2Funcional\GenerarSopaLetras\

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Grafico/1.0.0": {
+        "dependencies": {
+          "SopaLetras": "1.0.0"
+        },
+        "runtime": {
+          "Grafico.dll": {}
+        }
+      },
+      "SopaLetras/1.0.0": {
+        "runtime": {
+          "SopaLetras.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Grafico/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SopaLetras/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
