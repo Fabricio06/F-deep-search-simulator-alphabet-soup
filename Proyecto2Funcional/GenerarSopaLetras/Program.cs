@@ -146,8 +146,5 @@ public class Program
             Console.WriteLine("Posiciones: {0}", string.Join(", ", palabra.Value));
         }
 
-        return;
-
     }
 }
- 
