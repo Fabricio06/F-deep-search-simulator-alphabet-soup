@@ -9,7 +9,7 @@ namespace GenerarSopaLetras;
 public class Program
 {
     
-    //La ruta del archivo .txt
+    //La ruta del archivo .txt (no funciono con la ruta relatica, si se quiere probar el codigo, cambiar esta ruta por la actual)
     private string rutaArchivo = "C:\\Users\\fapor\\OneDrive\\Desktop\\Universidad\\5 semestre\\Lenguajes de programacion\\Semana 7\\Proyecto2-Lenguajes-de-programacion\\Proyecto2Funcional\\GenerarSopaLetras\\palabras.txt";
 
 
@@ -25,38 +25,19 @@ public class Program
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                palabras.Add(line);
+                palabras.Add(line); //Agrega cada linea como una palabra a la lista
             }
             reader.Close();
         }
     }
 
-    //Funcion que se encarga de convertir un List<string> a un List<List<char>> para habilitar la compati
-    public List<List<char>> ConvertirACharListList(List<string> listaDePalabras)
-    {
-        List<List<char>> listaDeCharListas = new List<List<char>>();
-
-        foreach (string palabra in listaDePalabras)
-        {
-            List<char> listaDeChars = new List<char>();
-
-            foreach (char caracter in palabra)
-            {
-                listaDeChars.Add(caracter);
-            }
-
-            listaDeCharListas.Add(listaDeChars);
-        }
-
-        return listaDeCharListas;
-    }
-
-
     //Funcion que se encarga de cambiar una palabra vieja por una nueva en el archivo
-    public void cambiarArchivo(int indVieja, string nueva)
+    public void cambiarArchivo(int indVieja, string nueva) //Recibe lel indice de la palabra vieja y la nueva palabra para cambiarla en el archivo
     {
         string[] lines = File.ReadAllLines(rutaArchivo); //Obtiene todas las palabras por lineas
-        lines[indVieja] = nueva;
+        lines[indVieja] = nueva; //Sustituye la palabra vieja por la nueva
+        
+        //Vuelve a sobrescribir todo el archivo con la nueva actualizacion
         using (StreamWriter writer = new StreamWriter(rutaArchivo, false))
         {
             foreach (string line in lines)
@@ -84,46 +65,51 @@ public class Program
     public char[,] GenerateSopaDeLetras()
     {
         var n = palabraMasLarga();
-        var matriz = new char[n, n];
-        var random = new Random();
+        var matriz = new char[n, n]; //La matriz es del tamano de la palabra mas grande
+        var random = new Random(); //Para generar ubicaciones aleatorias
         foreach (string palabra in palabras)
         {
             bool encontrada = false;
-            while (!encontrada)
+            while (!encontrada) //Se hace fuerza bruta para encajar la palabra
             {
-                int fila = random.Next(n);
-                int columna = random.Next(n);
-                int dx = random.Next(3) - 1;
-                int dy = random.Next(3) - 1;
+                int fila = random.Next(n); //Fila aleatoria
+                int columna = random.Next(n); //Columna aleatoria
+                int dx = random.Next(3) - 1; //Representa si va a ser, vertical, horizontal o diagonal
+                int dy = random.Next(3) - 1; //Representa si va a ser, vertical, horizontal o diagonal
 
                 if (dx == 0 && dy == 0)
                 {
-                    continue;
+                    continue; //Para que la ubicacion no sea solo el origen
                 }
 
+
+                //Se verifica que no se superpongan las palabras con otras
                 bool superpuesta = false;
                 for (int i = 0; i < palabra.Length; i++)
                 {
                     int nuevaFila = fila + i * dy;
                     int nuevaColumna = columna + i * dx;
-                    if (nuevaFila < 0 || nuevaFila >= n || nuevaColumna < 0 || nuevaColumna >= n || (matriz[nuevaFila, nuevaColumna] != '\0' && matriz[nuevaFila, nuevaColumna] != palabra[i]))
+                    if (nuevaFila < 0 || nuevaFila >= n || nuevaColumna < 0 || nuevaColumna >= n || (matriz[nuevaFila, nuevaColumna] != '\0' && matriz[nuevaFila, nuevaColumna] != palabra[i])) //Verifica que no se salga del margen o se superponga
                     {
-                        superpuesta = true;
+                        superpuesta = true; //Si se superpone entonces se vuelve para ir con otra ubicacion
                         break;
                     }
                 }
 
+                //Si no se superpone, se coloca en la matriz
                 if (!superpuesta)
                 {
-                    for (int i = 0; i < palabra.Length; i++)
+                    for (int i = 0; i < palabra.Length; i++) //Se va recorriendo caracter por caracter
                     {
-                        matriz[fila + i * dy, columna + i * dx] = palabra[i];
+                        matriz[fila + i * dy, columna + i * dx] = palabra[i]; //Se coloca cada caracter en la matriz
                     }
                     encontrada = true;
                 }
             }
         }
 
+
+        //Se rellenan los espacios vacios con letras al azar
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < n; j++)
@@ -132,25 +118,22 @@ public class Program
                 {
                     matriz[i, j] = (char)random.Next('A', 'Z' + 1);
                 }
-                Console.Write(matriz[i, j] + " ");
             }
-            Console.WriteLine();
         }
-        return matriz;
+        return matriz; //Se devuelve la matriz procesada
     }
    
     //CambiarPalabra Funcion que se encarga de cambiar una palabra de la lista de palabras por una nueva mandada por parametro    
     public  void CambiarPalabra(string vieja, string nueva)
     {
-        var confir = palabras.IndexOf(vieja);
-        Console.WriteLine(confir);
-        if (confir != -1)
+        var confir = palabras.IndexOf(vieja); //Obtiene el indice de la palabra vieja
+        if (confir != -1) //Entra solo si existe
         {
-            cambiarArchivo(confir, nueva);
-            palabras[confir] = nueva;
-            var matriz = GenerateSopaDeLetras();
-            Console.WriteLine("Sopa de letras actualizada:");
-           
+            cambiarArchivo(confir, nueva); //Se cambia en el archivo
+
+            //Sino me equivoco esto solo era necesario cuando probaba el codigo individual, desde la interfaz ya funciona sin esto
+            palabras[confir] = nueva; //Se cambia en la variable
+            var matriz = GenerateSopaDeLetras(); //Se vuelve a generar la matriz
         }
     
         }

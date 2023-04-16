@@ -43,10 +43,10 @@ public partial class Principal : Form
     //Se encargar de refrescar y rellenar con la lista de palabras la listBox
     private void rellanarListBox(List<string> palabras)
     {
-        listBox1.Items.Clear();
-        foreach (string s in palabras)
+        listBox1.Items.Clear(); //Refresca la listbodx
+        foreach (string s in palabras) //Recorre la lista de palabras
         {
-            listBox1.Items.Add(s);
+            listBox1.Items.Add(s); //Agrega palabra por palabra
         }
     }
     private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,7 +73,7 @@ public partial class Principal : Form
     //Boton que muestra las instrucciones del programa
     private void button3_Click(object sender, EventArgs e)
     {
-        textBox1.Visible = true;
+        textBox1.Visible = true; //Coloca visible las instrucciones
         button3.Visible = false;
 
     }

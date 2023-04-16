@@ -21,7 +21,7 @@ namespace GUI
         public CambiarPalabras(GenerarSopaLetras.Program sopaLet) //Se manda por parametro desde el form principal
         {
             InitializeComponent();
-            sopaLetras = sopaLet; //Se valoriza
+            sopaLetras = sopaLet; //Se valoriza por el parametro
             rellanarListBox(sopaLetras.palabras); //Se rellena la list box
         }
 
@@ -44,14 +44,15 @@ namespace GUI
                 {
 
                     string vieja = "";
+                    //Recorre las palabras en la checklist, que solo deberia ser una
                     foreach (string palabra in checkedListBox1.CheckedItems) //Obtiene la unica palabra de la checklist
                     {
                         vieja = palabra;
                     }
                     sopaLetras.CambiarPalabra(vieja, textBox1.Text.Trim()); //Llama a la funcion encargado de cambiar la palabra
 
-                    checkedListBox1.Items.Clear();
-                    rellanarListBox(sopaLetras.palabras);
+                    checkedListBox1.Items.Clear(); //Simplia las palabras ya una vez cambiado
+                    rellanarListBox(sopaLetras.palabras); //Y lo refresca
                     MessageBox.Show("Palabra cambiada correctamente " + vieja + "-->" + textBox1.Text.Trim());
                     textBox1.Clear();
                 }
@@ -69,9 +70,9 @@ namespace GUI
         //Funcion que se encarga de rellenar la listBox con todas las palabras de la lista de palabras
         private void rellanarListBox(List<string> palabras)
         {
-            foreach (string s in palabras)
+            foreach (string s in palabras) //Recorre cada palabra de la lista de palabras
             {
-                checkedListBox1.Items.Add(s);
+                checkedListBox1.Items.Add(s); //Las agrega a la checkedListBox
             }
         }
 
@@ -86,7 +87,7 @@ namespace GUI
             }
             foreach (byte c in palabra) //Solo palabra en mayuscula y sin espacio
             {
-                if (c > 90 || c < 65)
+                if (c > 90 || c < 65) //Solo mayusculas
                 {
                     return false;
                 }
@@ -97,7 +98,7 @@ namespace GUI
         //Funcion que se encarga de revisar que en el checkList, solo se haya seleccionado una palabra a cambiar
         private bool revisarCheckList()
         {
-            if (checkedListBox1.CheckedItems.Count == 1)
+            if (checkedListBox1.CheckedItems.Count == 1) //Solo una seleccion en la checkedListBox
             {
                 return true;
             }

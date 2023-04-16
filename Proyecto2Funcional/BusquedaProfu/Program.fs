@@ -7,8 +7,9 @@ module parteFShart =
     //a un char list list como el ejemplo que dio el profe
     let ConvertirMatriz (matriz : char[,]) : char list list =
         let filas = Array2D.length1 matriz
-        let columnas = Array2D.length2 matriz
+        let columnas = filas
 
+        //Recorre cada apartado para convertir la matriz
         [for i in 0 .. filas - 1 do
             yield [for j in 0 .. columnas - 1 do
                         matriz.[i, j]
@@ -45,7 +46,7 @@ module parteFShart =
     *)
 
 
-    //Funcion que se encarga simplemente de buscar los miembros de un nodo
+    //Funcion que se encarga simplemente de buscar los miembros de un nodo para ver si existe o no
     let miembro e lista =
         lista
         |> List.map (fun x -> x = e)
@@ -54,38 +55,39 @@ module parteFShart =
     //Se encarga de recibir una coordenada y devolver el caracter de esa coordenada encontrada en la sopa de letras
     let getElement i j (matrix: _ list list)=
         if matrix.Length > i && matrix[i].Length > j then
-                matrix[i][j]
+                matrix[i][j] //Devuelve el caracter en las coordenadas enviadas
         else
             '_'
     
     //Funcion que recibe una coordenada inicial y un caracter y se encarga de buscar las coordenadas del caracter en la matriz y devuelve las coordenadas del caracter encontrado
     let rec findFirstLetterPosition (i:int) (j:int) (letter:char) (matrix: _ list list) =    
         if matrix[i][j] = letter then
-            (i,j)
+            (i,j) //Si la encuentra manda la coordenada nueva
         elif (i = matrix.Length-1) & (j = matrix[i].Length-1) then
-            (-1,-1)
+            (-1,-1) //Sino encuentra mas letras buscadas despues de la coordenadas obtenidas
         else
+            //Para recorrer de manera recursiva toda la matriz y buscar la letra
             if j = matrix[i].Length-1 then
                 findFirstLetterPosition (i+1) 0 letter matrix
             else
                 findFirstLetterPosition i (j+1) letter matrix
     
-     //Se encarga de obtener los vecinos horizontales, diagonales, verticales y reversos y le realiza una poda para que solo se obtengan en la direccion necesaria
+    //Se encarga de obtener los vecinos horizontales, diagonales, verticales y reversos y le realiza una poda para que solo se obtengan en la direccion necesaria
     let vecinos_aux (posicion: int * int) (origin: int * int) (matrix: _ list list) =
-        let x, y = posicion
-        let ox, oy = origin
+        let x, y = posicion //Obtiene las coordenadas de la ubicacion actual
+        let ox, oy = origin //Las coordenadas del origen
         match posicion with
-        | p when p = origin ->
+        | p when p = origin -> //Si es igual al origen se envia todas las coordenadas 
             [(x, y + 1); (x, y - 1); (x + 1, y); (x - 1, y); (x - 1, y - 1); (x - 1, y + 1); (x + 1, y - 1); (x + 1, y + 1)]
-        | (px, _) when px = ox ->
-            if y > oy then [(x, y + 1)] else [(x, y - 1)]
-        | (_, py) when py = oy ->
-            if x > ox then [(x + 1, y)] else [(x - 1, y)]
-        | _ when abs (x - ox) = abs (y - oy) ->
+        | (px, _) when px = ox -> //Cuando solo la primera parte es igual al origen, manda las coordenadas que le siguen
+            if y > oy then [(x, y + 1)] else [(x, y - 1)] //Devuelve aumentando las columnas
+        | (_, py) when py = oy -> //Si solo la segunda parte es igual al origen, manda las coordenadas que le siguen
+            if x > ox then [(x + 1, y)] else [(x - 1, y)] //Devuelve aumentando las filas
+        | _ when abs (x - ox) = abs (y - oy) -> //Si son coordenadas negativas que representan reversa, o diagonales para atras
             let dx = if x > ox then 1 else -1
             let dy = if y > oy then 1 else -1
             [(x + dx, y + dy)]
-        | _ -> [(fst origin, snd origin)]
+        | _ -> [(fst origin, snd origin)] //Devuelve la lista con las coordenadas
 
 
     //Filtra las coordenadas recibidas de vecinos_aux para que solo nos devuelva los valores validos de los vecinos
@@ -95,13 +97,13 @@ module parteFShart =
 
     //Se encarga de extender las rutas enviadas buscandole los vecinos y devuelve la lista con las nuevas rutas
     let extender (ruta: _ list) (origen: (int*int)) (matrix: _ list list) =
-        (vecinos ruta.Head origen matrix)
-        |> List.map (fun x -> if (miembro x ruta) then [] else x::ruta)
-        |> List.filter (fun x -> x <> [])
+        (vecinos ruta.Head origen matrix) //Lama a vecinos para extender la ruta
+        |> List.map (fun x -> if (miembro x ruta) then [] else x::ruta) 
+        |> List.filter (fun x -> x <> [])//Filtra las listas vacias
 
     //Funcion que se encarga de verificar si el caracter de una posicion en la matriz es el caracter siguiente de la palabra que buscamos
     let verificarCorrespondencia (posicion:(int*int)) needed (matrix: _ list list) =
-        if (getElement (fst(posicion)) (snd(posicion)) matrix) = needed then
+        if (getElement (fst(posicion)) (snd(posicion)) matrix) = needed then //Revisa si el caracter es las posiciones enviadas es el que necesitamos
             true
         else
             false
@@ -138,7 +140,7 @@ module parteFShart =
             List.rev rutas.Head
         elif goal.Length<=rutas.Head.Length then   // Si la ruta actual tiene una longitud mayor o igual a la palabra buscada, pasamos a la siguiente ruta
             if(rutas.Tail <> []) then
-            prof_aux rutas.Tail origin goal (rutas.Tail.Head.Length-1) matrix
+            prof_aux rutas.Tail origin goal (rutas.Tail.Head.Length-1) matrix //Sino sigue buscando con las colas
             else
             prof_aux rutas.Tail origin goal index matrix
   
@@ -146,7 +148,7 @@ module parteFShart =
               prof_aux (List.append (extender rutas.Head origin matrix) rutas.Tail) origin goal (index+1) matrix  
         else // Si no se cumple ninguna de las condiciones anteriores, pasamos a la siguiente ruta
             if(rutas.Tail <> []) then
-            prof_aux rutas.Tail origin goal (rutas.Tail.Head.Length-1) matrix
+            prof_aux rutas.Tail origin goal (rutas.Tail.Head.Length-1) matrix //Sino sigue buscando con las colas
             else
             prof_aux rutas.Tail origin goal index matrix
 
@@ -154,8 +156,8 @@ module parteFShart =
     //las funciones encargados de realizar los procedimientos y obtiene la lista con todas las coordenadas de las palabras
     //Es una modificacion de prof original pero que ahora reciba una lista de palabras en vez de una sola palabra 
     let prof (listaPalabras: _ list list) (matrix: char[,]) =
-        let (matriz : char list list) = ConvertirMatriz matrix 
-        listaPalabras
+        let (matriz : char list list) = ConvertirMatriz matrix //Transforma la matriz [,] recibida de c# a un char list list
+        listaPalabras //Realiza el procedimiento de busqueda por profundidad a cada palabra
         |> List.map (fun goal -> (prof_aux [[findFirstLetterPosition 0 0 goal[0] matriz]] (findFirstLetterPosition 0 0 goal[0] matriz) goal 0 matriz))
         |> List.filter (fun x -> x <> [])
 
