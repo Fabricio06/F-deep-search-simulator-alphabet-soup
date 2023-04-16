@@ -51,7 +51,6 @@
             label1.Size = new Size(339, 27);
             label1.TabIndex = 4;
             label1.Text = "Seleccione la palabra a cambiar";
-            label1.Click += label1_Click;
             // 
             // checkedListBox1
             // 
@@ -95,7 +94,6 @@
             label2.Size = new Size(594, 30);
             label2.TabIndex = 8;
             label2.Text = "Cambiar palabras de la lista predeterminada";
-            label2.Click += label2_Click;
             // 
             // textBox1
             // 
@@ -117,7 +115,6 @@
             label3.Size = new Size(270, 27);
             label3.TabIndex = 10;
             label3.Text = "Escriba la nueva palabra";
-            label3.Click += label3_Click;
             // 
             // label4
             // 

@@ -103,5 +103,20 @@ namespace GUI
             }
             return false;
         }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CambiarPalabras_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

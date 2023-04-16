@@ -35,7 +35,6 @@ namespace GUI
 
             //Agrega la matriz al grid grafico
             inicializarPalabras();
-
             //Rellena las palabras a buscar
             rellanarcheckedListBox1(sopaLetras.palabras);
 
@@ -50,6 +49,7 @@ namespace GUI
 
         private void Juego_Load(object sender, EventArgs e)
         {
+
 
         }
 

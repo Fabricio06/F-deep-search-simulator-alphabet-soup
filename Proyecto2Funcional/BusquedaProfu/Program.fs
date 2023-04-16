@@ -14,6 +14,7 @@ module parteFShart =
                         matriz.[i, j]
                 ]]
 
+
     (*
     let sopaLetras = [['P';'E';'D';'R';'O';'N';'S';'M';'C']
                       ['L';'S';'A';'P';'O';'S';'R';'V';'S']
@@ -87,10 +88,6 @@ module parteFShart =
         | _ -> [(fst origin, snd origin)]
 
 
-
-
-
-
     //Filtra las coordenadas recibidas de vecinos_aux para que solo nos devuelva los valores validos de los vecinos
     let vecinos (posicion: (int*int)) (origen: (int*int)) (matrix: _ list list) =
         (vecinos_aux posicion origen matrix)
@@ -162,4 +159,5 @@ module parteFShart =
         |> List.map (fun goal -> (prof_aux [[findFirstLetterPosition 0 0 goal[0] matriz]] (findFirstLetterPosition 0 0 goal[0] matriz) goal 0 matriz))
         |> List.filter (fun x -> x <> [])
 
+    
     

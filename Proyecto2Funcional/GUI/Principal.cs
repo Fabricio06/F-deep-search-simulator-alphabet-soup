@@ -25,6 +25,21 @@ public partial class Principal : Form
         this.Visible = true;
     }
 
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label3_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Principal_Load(object sender, EventArgs e)
+    {
+
+    }
+
     //Se encargar de refrescar y rellenar con la lista de palabras la listBox
     private void rellanarListBox(List<string> palabras)
     {
@@ -33,6 +48,9 @@ public partial class Principal : Form
         {
             listBox1.Items.Add(s);
         }
+    }
+    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
     }
 
     //Llama al form encargado de cambiar la palabra
@@ -45,6 +63,11 @@ public partial class Principal : Form
 
         rellanarListBox(sopaLetras.palabras);
         this.Visible = true;
+    }
+
+    private void textBox1_TextChanged(object sender, EventArgs e)
+    {
+
     }
 
     //Boton que muestra las instrucciones del programa
