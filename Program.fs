@@ -7,10 +7,12 @@ let palabras = [['h';'o';'l';'a']
                 ['a';'s';'a';'m']
                 ['a';'s';'a';'c']]
 
-let objetivo = ['c';'a';'s';'a']
+//let objetivo = ['c';'a';'s';'a']
 let objetivo2 = ['c';'a';'m';'a']
 let objetivo3 = ['m';'a';'s';'a']
 let objetivo4 = ['y';'o']
+let objetivo = ['a';'s';'a';'c']
+//let objetivo5 = ['p';'e';'r';'a']
 
 let miembro e lista =
     lista
@@ -87,3 +89,4 @@ printfn "%A" (prof objetivo palabras)
 printfn "%A" (prof objetivo2 palabras)
 printfn "%A" (prof objetivo3 palabras)
 printfn "%A" (prof objetivo4 palabras)
+//printfn "%A" (prof objetivo5 palabras)

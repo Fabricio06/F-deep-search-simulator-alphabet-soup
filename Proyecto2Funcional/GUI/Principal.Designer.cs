@@ -37,6 +37,7 @@ partial class Principal
         label2 = new Label();
         textBox1 = new TextBox();
         label3 = new Label();
+        button3 = new Button();
         SuspendLayout();
         // 
         // button1
@@ -51,12 +52,13 @@ partial class Principal
         // 
         // button2
         // 
-        button2.Location = new Point(586, 214);
+        button2.Location = new Point(568, 214);
         button2.Name = "button2";
-        button2.Size = new Size(190, 37);
+        button2.Size = new Size(208, 37);
         button2.TabIndex = 1;
         button2.Text = "Cambiar palabra";
         button2.UseVisualStyleBackColor = true;
+        button2.Click += button2_Click;
         // 
         // label1
         // 
@@ -73,17 +75,18 @@ partial class Principal
         // 
         listBox1.FormattingEnabled = true;
         listBox1.ItemHeight = 15;
-        listBox1.Location = new Point(565, 99);
+        listBox1.Location = new Point(556, 99);
         listBox1.Name = "listBox1";
         listBox1.Size = new Size(232, 109);
         listBox1.TabIndex = 3;
+        listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
         // 
         // label2
         // 
         label2.AutoSize = true;
         label2.Font = new Font("Elephant", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point);
-        label2.ForeColor = Color.Gold;
-        label2.Location = new Point(598, 69);
+        label2.ForeColor = Color.Crimson;
+        label2.Location = new Point(586, 69);
         label2.Name = "label2";
         label2.Size = new Size(190, 27);
         label2.TabIndex = 4;
@@ -91,23 +94,40 @@ partial class Principal
         // 
         // textBox1
         // 
+        textBox1.BackColor = Color.Chocolate;
+        textBox1.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        textBox1.ForeColor = Color.Yellow;
+        textBox1.HideSelection = false;
         textBox1.Location = new Point(12, 99);
         textBox1.Multiline = true;
         textBox1.Name = "textBox1";
-        textBox1.Size = new Size(189, 122);
+        textBox1.ReadOnly = true;
+        textBox1.Size = new Size(277, 169);
         textBox1.TabIndex = 5;
+        textBox1.Text = resources.GetString("textBox1.Text");
+        textBox1.TextChanged += textBox1_TextChanged;
         // 
         // label3
         // 
         label3.AutoSize = true;
         label3.Font = new Font("Elephant", 15.7499981F, FontStyle.Regular, GraphicsUnit.Point);
-        label3.ForeColor = Color.Gold;
-        label3.Location = new Point(34, 69);
+        label3.ForeColor = Color.Crimson;
+        label3.Location = new Point(78, 69);
         label3.Name = "label3";
         label3.Size = new Size(146, 27);
         label3.TabIndex = 6;
         label3.Text = "Intrucciones";
         label3.Click += label3_Click;
+        // 
+        // button3
+        // 
+        button3.Location = new Point(78, 99);
+        button3.Name = "button3";
+        button3.Size = new Size(132, 59);
+        button3.TabIndex = 7;
+        button3.Text = "Mostrar instrucciones";
+        button3.UseVisualStyleBackColor = true;
+        button3.Click += button3_Click;
         // 
         // Principal
         // 
@@ -115,6 +135,7 @@ partial class Principal
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.LimeGreen;
         ClientSize = new Size(800, 450);
+        Controls.Add(button3);
         Controls.Add(label3);
         Controls.Add(textBox1);
         Controls.Add(label2);
@@ -124,6 +145,7 @@ partial class Principal
         Controls.Add(button1);
         Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "Principal";
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "Sopa de letras";
         Load += Principal_Load;
         ResumeLayout(false);
@@ -139,4 +161,5 @@ partial class Principal
     private Label label2;
     private TextBox textBox1;
     private Label label3;
+    private Button button3;
 }

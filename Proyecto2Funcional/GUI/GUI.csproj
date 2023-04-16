@@ -14,6 +14,18 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BusquedaProfu\BusquedaProfu.fsproj" />
+      <ProjectReference Include="..\GenerarSopaLetras\GenerarSopaLetras.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="BusquedaProfu">
+        <HintPath>..\BusquedaProfu\obj\Debug\net7.0-windows\BusquedaProfu.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+
+    <ItemGroup>
       <Compile Update="Properties\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
