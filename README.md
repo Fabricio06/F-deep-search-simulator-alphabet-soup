@@ -49,3 +49,4 @@ Si pulsamos el boton de "Resolver todo" que se encarga de obtener las coordenada
 ![image](https://user-images.githubusercontent.com/82431338/232261356-7d71d3a7-37d2-4149-a69c-117ad1ee2261.png)
 
 En el video se explica de manera muy general, entonces se van a podran cambios de documentacion e interfaz. Parte funcional no, porque ya funciona perfectamente
+
